@@ -1,0 +1,16 @@
+services:
+  db:
+    image: docker.io/library/postgres:16
+    container_name: advent_of_sql_2024
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: santa_workshop
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d:Z
+    restart: unless-stopped
+volumes:
+  postgres_data:
